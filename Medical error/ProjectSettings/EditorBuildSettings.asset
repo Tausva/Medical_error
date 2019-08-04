@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: accbd750dbeea934dac66ac6500db261
+  - enabled: 1
+    path: Assets/Scenes/DayScene.unity
+    guid: 23dcabfa020e68f4790500d15b415062
+  - enabled: 1
+    path: Assets/Scenes/CreditsScene.unity
+    guid: d1a37f1837a160147b5a3276e72037e0
+  - enabled: 1
+    path: Assets/Scenes/NightScene.unity
+    guid: 12cb815afa7a3194ea6772252385e746
+  - enabled: 1
+    path: Assets/Scenes/House.unity
+    guid: 8bd2a54d180172643827b4dc0d2ff5af
+  - enabled: 1
+    path: Assets/Scenes/Waifus.unity
+    guid: 19808eb7096c7474aaf628527c534138
+  m_configObjects: {}
