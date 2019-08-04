@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Mixing : MonoBehaviour
 {
+    public AudioClip addgrass;
+    public AudioClip addliquid;
+    public AudioClip mixingSound;
+    public AudioClip trash;
+
     public string list;
     public bool isLegal = true;
 
@@ -80,6 +85,9 @@ public class Mixing : MonoBehaviour
                 isTimed = false;
                 GameObject.Find("Inventory").GetComponent<Inventory>().AddItem(result);
 
+                GameObject.Find("mixingAudio").GetComponent<AudioSource>().Stop();
+                GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(mixingSound);
+
                 if (!isLegal)
                     isLegal = true;
 
@@ -119,6 +127,11 @@ public class Mixing : MonoBehaviour
         {
             list += name + " ";
             ChangeRandomColor();
+
+            if (name == "Coca leaves" || name == "Marijuana")
+            {
+                GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(addgrass);
+            } else GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(addliquid);
         }
     }
 
@@ -133,6 +146,8 @@ public class Mixing : MonoBehaviour
         {
             progressBar.SetActive(true);
             progressBar.GetComponent<timer>().StartTimer((float)sec/10);
+
+            GameObject.Find("mixingAudio").GetComponent<AudioSource>().Play();
 
             time = Time.time + (float)sec / 10;
             isTimed = true;
@@ -156,5 +171,10 @@ public class Mixing : MonoBehaviour
     void ChangeRandomColor()
     {
         insideColor.color = new Color(Random.value, Random.value, Random.value);
+    }
+
+    public void TrashSound()
+    {
+        GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(trash);
     }
 }

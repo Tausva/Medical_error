@@ -7,5 +7,6 @@ public class Trigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         GameObject.Find("Spawner").GetComponent<CharacterSpawner>().openPanel();
+        GameObject.Find("AudioManager").GetComponent<AudioSource>().Play();
     }
 }

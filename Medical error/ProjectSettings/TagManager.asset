@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - MixingTable
+  - Music
   layers:
   - Default
   - TransparentFX

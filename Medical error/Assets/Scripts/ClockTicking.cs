@@ -6,6 +6,9 @@ using TMPro;
 
 public class ClockTicking : MonoBehaviour
 {
+    public AudioClip bell;
+    private bool hadRand = false;
+
     public float TimeInSeconds;
 
     private Transform hoursArrow;
@@ -48,11 +51,20 @@ public class ClockTicking : MonoBehaviour
             PauseGame();
             panel.SetActive(true);
             GameObject.Find("Inventory").GetComponent<Inventory>().ShowStats();
+
+            if (!hadRand)
+            {
+                hadRand = true;
+                GameObject.Find("MusicManager").GetComponent<AudioSource>().Stop();
+                GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(bell);
+            }
         }
     }
 
     public void PauseGame()
     {
+        GameObject.Find("MusicManager").GetComponent<AudioSource>().Stop();
+
         isTicking = false;
         GameObject.Find("Marijuana").GetComponent<Drag>().DisableDragging();
         GameObject.Find("Coca leaves").GetComponent<Drag>().DisableDragging();
@@ -71,6 +83,8 @@ public class ClockTicking : MonoBehaviour
 
     public void ResumeGame()
     {
+        GameObject.Find("MusicManager").GetComponent<AudioSource>().Play();
+
         isTicking = true;
         GameObject.Find("Marijuana").GetComponent<Drag>().EnableDragging();
         GameObject.Find("Coca leaves").GetComponent<Drag>().EnableDragging();

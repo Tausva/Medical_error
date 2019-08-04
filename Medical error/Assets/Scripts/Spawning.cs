@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class Spawning : MonoBehaviour
 {
+    public AudioClip bossSound;
+    public AudioClip DoorOpenSound;
+    public AudioClip DoorCloseSound;
+    public AudioClip Angry;
+    private AudioSource audio = new AudioSource();
+
     public int checkRate;
     public float commingTime = 3f;
     public float watchTime = 2f;
@@ -21,7 +27,8 @@ public class Spawning : MonoBehaviour
 
     private int countOfMedicine;
     private int pausedState;
-    
+    private bool isAngry = false;
+
     void Start()
     {
         DoorClosed = GameObject.Find("DoorClosed");
@@ -35,6 +42,8 @@ public class Spawning : MonoBehaviour
         ShoutingCloud.SetActive(false);
         DoorOpen.SetActive(false);
         Body.SetActive(false);
+
+        audio = GameObject.Find("MusicManager").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -52,6 +61,9 @@ public class Spawning : MonoBehaviour
         }
         else if (state == 1)
         {
+            audio.Stop();
+            audio.PlayOneShot(bossSound);
+
             GameObject.Find("Shadow").transform.position = new Vector2(6.11f, 2.6f);
             GameObject.Find("Shadow").GetComponent<Animator>().SetTrigger("Walk");
             state = 2;
@@ -67,6 +79,8 @@ public class Spawning : MonoBehaviour
             DoorOpen.SetActive(true);
             Body.SetActive(true);
 
+            GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(DoorOpenSound);
+
             timer = Time.time + watchTime;
             state = 4;
         }
@@ -79,6 +93,11 @@ public class Spawning : MonoBehaviour
             DoorClosed.SetActive(true);
             DoorOpen.SetActive(false);
             Body.SetActive(false);
+
+            GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(DoorCloseSound);
+
+            audio.Stop();
+            audio.Play();
 
             if (countOfMedicine < 1)
             {
@@ -103,6 +122,12 @@ public class Spawning : MonoBehaviour
         }
         else if (state == 6)
         {
+            if (!isAngry)
+            {
+                GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(Angry);
+                isAngry = true;
+            }
+
             Head.SetActive(true);
             HeadColor.color = new Color(HeadColor.color.r, HeadColor.color.g - 0.01f, HeadColor.color.b - 0.01f);
             ShoutingCloud.SetActive(true);

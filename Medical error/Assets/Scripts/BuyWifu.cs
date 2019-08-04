@@ -10,12 +10,14 @@ public class BuyWifu : MonoBehaviour
     public int index;
     public int price;
     public GameObject text;
+    public GameObject kiss;
     private bool isBought = false;
     private int space;
 
     void Awake()
     {
-        //PlayerPrefs.SetInt("Wifu" + index, 0);
+        kiss.SetActive(false);
+
         space = PlayerPrefs.GetInt("House", 0) + PlayerPrefs.GetInt("House", 0) - 1;
 
         text.GetComponent<TextMeshProUGUI>().text = price + "$";
@@ -41,6 +43,7 @@ public class BuyWifu : MonoBehaviour
         isBought = true; 
         gameObject.GetComponent<Image>().color = new Color(1,1,1);
         text.SetActive(false);
+        kiss.SetActive(true);
     }
 
     public void Buy()
@@ -54,10 +57,22 @@ public class BuyWifu : MonoBehaviour
                 Unlocked();
                 GameObject.Find("Wifu").GetComponent<BuyWifu>().AddMeIn();
                 GameObject.Find("Wifu").GetComponent<BuyWifu>().CalculateSpace();
+
+                kiss.GetComponent<Animation>().Play();
             }
         } else
         {
             PlayerPrefs.SetInt("Wifu" + index, PlayerPrefs.GetInt("Wifu" + index) + 1);
+            kiss.GetComponent<Animation>().Play();
+
+            if (PlayerPrefs.GetInt("Wifu5",0) >= 100 && 
+                PlayerPrefs.GetInt("Wifu1", 0) >= 100 && 
+                PlayerPrefs.GetInt("Wifu2", 0) >= 100 && 
+                PlayerPrefs.GetInt("Wifu3", 0) >= 100 && 
+                PlayerPrefs.GetInt("Wifu4", 0) >= 100)
+            {
+                PlayerPrefs.SetInt("UltimateWifu", 1);
+            }
         }
     }
 
@@ -76,6 +91,5 @@ public class BuyWifu : MonoBehaviour
         if (space == 0)
             GameObject.Find("Space").GetComponent<TextMeshProUGUI>().text = "Full :(";
         else GameObject.Find("Space").GetComponent<TextMeshProUGUI>().text = space + " empty spaces";
-        Debug.Log(gameObject.name);
     }
 }

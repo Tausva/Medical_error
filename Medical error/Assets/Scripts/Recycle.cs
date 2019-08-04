@@ -7,6 +7,7 @@ public class Recycle : MonoBehaviour
     void OnMouseDown()
     {
         GameObject.Find("Chemical Mix Place").GetComponent<Mixing>().ClearList();
+        GameObject.Find("Chemical Mix Place").GetComponent<Mixing>().TrashSound();
 
         if (GameObject.Find("TimerBar") != null)
         {
