@@ -43,7 +43,8 @@ public class Spawning : MonoBehaviour
         DoorOpen.SetActive(false);
         Body.SetActive(false);
 
-        audio = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        //audio = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        audio = GameObject.FindGameObjectWithTag("DayMusic").GetComponent<AudioSource>();
     }
 
     void Update()
@@ -104,7 +105,7 @@ public class Spawning : MonoBehaviour
                 checkRate -= 20;
                 watchTime += 0.2f;
             }
-            else if (countOfMedicine > 1)
+            else if (countOfMedicine > 0)
             {
                 checkRate += 20;
                 watchTime -= 0.2f;
@@ -149,7 +150,7 @@ public class Spawning : MonoBehaviour
             state = 6;
     }
 
-    void AddOneToMedicineCount()
+    public void AddOneToMedicineCount()
     {
         if (state == 4)
         {

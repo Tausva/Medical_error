@@ -64,6 +64,7 @@ public class ClockTicking : MonoBehaviour
     public void PauseGame()
     {
         GameObject.Find("MusicManager").GetComponent<AudioSource>().Stop();
+        GameObject.Find("mixingAudio").GetComponent<AudioSource>().Stop();
 
         isTicking = false;
         GameObject.Find("Marijuana").GetComponent<Drag>().DisableDragging();
@@ -84,7 +85,6 @@ public class ClockTicking : MonoBehaviour
     public void ResumeGame()
     {
         GameObject.Find("MusicManager").GetComponent<AudioSource>().Play();
-
         isTicking = true;
         GameObject.Find("Marijuana").GetComponent<Drag>().EnableDragging();
         GameObject.Find("Coca leaves").GetComponent<Drag>().EnableDragging();

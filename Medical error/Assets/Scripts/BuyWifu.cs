@@ -6,7 +6,6 @@ using TMPro;
 
 public class BuyWifu : MonoBehaviour
 {
-    // Start is called before the first frame update
     public int index;
     public int price;
     public GameObject text;
@@ -14,10 +13,12 @@ public class BuyWifu : MonoBehaviour
     private bool isBought = false;
     private int space;
 
+    public AudioClip smallkiss;
+    public AudioClip bigkiss;
+
     void Awake()
     {
         kiss.SetActive(false);
-
         space = PlayerPrefs.GetInt("House", 0) + PlayerPrefs.GetInt("House", 0) - 1;
 
         text.GetComponent<TextMeshProUGUI>().text = price + "$";
@@ -59,11 +60,14 @@ public class BuyWifu : MonoBehaviour
                 GameObject.Find("Wifu").GetComponent<BuyWifu>().CalculateSpace();
 
                 kiss.GetComponent<Animation>().Play();
+                GameObject.Find("ButtonSound").GetComponent<PressButton>().pressDifferent(bigkiss);
             }
         } else
         {
             PlayerPrefs.SetInt("Wifu" + index, PlayerPrefs.GetInt("Wifu" + index) + 1);
-            kiss.GetComponent<Animation>().Play();
+
+            kiss.GetComponent<Animation>().PlayQueued("AfterKiss");
+            GameObject.Find("ButtonSound").GetComponent<PressButton>().pressDifferent(smallkiss);
 
             if (PlayerPrefs.GetInt("Wifu5",0) >= 100 && 
                 PlayerPrefs.GetInt("Wifu1", 0) >= 100 && 
@@ -88,8 +92,9 @@ public class BuyWifu : MonoBehaviour
 
     public void CalculateSpace()
     {
-        if (space == 0)
+        if (space <= 0)
             GameObject.Find("Space").GetComponent<TextMeshProUGUI>().text = "Full :(";
+        else if (space == 1) GameObject.Find("Space").GetComponent<TextMeshProUGUI>().text = space + " empty space";
         else GameObject.Find("Space").GetComponent<TextMeshProUGUI>().text = space + " empty spaces";
     }
 }

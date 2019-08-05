@@ -8,4 +8,9 @@ public class PressButton : MonoBehaviour
     {
         GameObject.Find("ButtonPressSound").GetComponent<AudioSource>().Play();
     }
+
+    public void pressDifferent(AudioClip playThis)
+    {
+        GameObject.Find("ButtonPressSound").GetComponent<AudioSource>().PlayOneShot(playThis);
+    }
 }

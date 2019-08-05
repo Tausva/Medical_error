@@ -90,6 +90,7 @@ public class Mixing : MonoBehaviour
 
                 if (!isLegal)
                     isLegal = true;
+                else GameObject.Find("Boss").GetComponent<Spawning>().AddOneToMedicineCount();
 
                 Cloud.SetActive(true);
                 switch (result)
@@ -114,7 +115,7 @@ public class Mixing : MonoBehaviour
                         break;
                 }
                 GameObject.Find("ProductionCloud").GetComponent<Animator>().SetTrigger("Pop");
-                
+
                 ClearList();
                 canAdd = true;
             }
@@ -166,6 +167,7 @@ public class Mixing : MonoBehaviour
         ClearList();
         canAdd = true;
         isLegal = true;
+        GameObject.Find("mixingAudio").GetComponent<AudioSource>().Stop();
     }
 
     void ChangeRandomColor()
