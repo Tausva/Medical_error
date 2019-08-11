@@ -75,7 +75,8 @@ public class ClockTicking : MonoBehaviour
         pauseButton.SetActive(false);
 
         GameObject.Find("Chemical Mix Place").GetComponent<Mixing>().PauseMixing();
-        GameObject.Find("TimerBar").GetComponent<timer>().PauseTimer();
+        if (GameObject.Find("TimerBar") != null)
+            GameObject.Find("TimerBar").GetComponent<timer>().PauseTimer();
     }
 
     public void PausePauseGame()
@@ -97,7 +98,8 @@ public class ClockTicking : MonoBehaviour
         pausePanel.SetActive(false);
 
         GameObject.Find("Chemical Mix Place").GetComponent<Mixing>().UnPauseMixing();
-        GameObject.Find("TimerBar").GetComponent<timer>().UnPauseTimer();
+        if (GameObject.Find("TimerBar") != null)
+            GameObject.Find("TimerBar").GetComponent<timer>().UnPauseTimer();
     }
 
     public void MainMenu()
