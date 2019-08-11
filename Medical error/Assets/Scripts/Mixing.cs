@@ -29,6 +29,8 @@ public class Mixing : MonoBehaviour
     private SpriteRenderer insideColor;
     private bool firstTime = true;
 
+    private bool isPaused = false;
+
     private void Start()
     {
         progressBar = GameObject.Find("TimerBar");
@@ -76,6 +78,9 @@ public class Mixing : MonoBehaviour
                 Timer(int.Parse(recipe[2].ToString() + recipe[3]));
             }
         }
+        if (isPaused)
+            time += Time.deltaTime;
+
         if (isTimed == true)
         {
             canAdd = false;
@@ -178,5 +183,17 @@ public class Mixing : MonoBehaviour
     public void TrashSound()
     {
         GameObject.Find("AudioManager").GetComponent<AudioSource>().PlayOneShot(trash);
+    }
+
+    public void PauseMixing()
+    {
+        GameObject.Find("mixingAudio").GetComponent<AudioSource>().Pause();
+        isPaused = true;
+    }
+
+    public void UnPauseMixing()
+    {
+        GameObject.Find("mixingAudio").GetComponent<AudioSource>().UnPause();
+        isPaused = false;
     }
 }

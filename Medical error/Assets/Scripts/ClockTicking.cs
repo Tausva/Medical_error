@@ -50,6 +50,7 @@ public class ClockTicking : MonoBehaviour
         {
             PauseGame();
             panel.SetActive(true);
+            GameObject.Find("Recycle Bin").GetComponent<Recycle>().RecycleWhatsLeft();
             GameObject.Find("Inventory").GetComponent<Inventory>().ShowStats();
 
             if (!hadRand)
@@ -63,17 +64,18 @@ public class ClockTicking : MonoBehaviour
 
     public void PauseGame()
     {
-        GameObject.Find("MusicManager").GetComponent<AudioSource>().Stop();
+        GameObject.Find("MusicManager").GetComponent<AudioSource>().Pause();
         GameObject.Find("mixingAudio").GetComponent<AudioSource>().Stop();
-
         isTicking = false;
         GameObject.Find("Marijuana").GetComponent<Drag>().DisableDragging();
         GameObject.Find("Coca leaves").GetComponent<Drag>().DisableDragging();
         GameObject.Find("Zoxide").GetComponent<Drag>().DisableDragging();
         GameObject.Find("Clorid").GetComponent<Drag>().DisableDragging();
         GameObject.Find("Boss").GetComponent<Spawning>().PauseDaBoy();
-        GameObject.Find("Recycle Bin").GetComponent<Recycle>().RecycleWhatsLeft();
         pauseButton.SetActive(false);
+
+        GameObject.Find("Chemical Mix Place").GetComponent<Mixing>().PauseMixing();
+        GameObject.Find("TimerBar").GetComponent<timer>().PauseTimer();
     }
 
     public void PausePauseGame()
@@ -84,7 +86,7 @@ public class ClockTicking : MonoBehaviour
 
     public void ResumeGame()
     {
-        GameObject.Find("MusicManager").GetComponent<AudioSource>().Play();
+        GameObject.Find("MusicManager").GetComponent<AudioSource>().UnPause();
         isTicking = true;
         GameObject.Find("Marijuana").GetComponent<Drag>().EnableDragging();
         GameObject.Find("Coca leaves").GetComponent<Drag>().EnableDragging();
@@ -93,6 +95,9 @@ public class ClockTicking : MonoBehaviour
         GameObject.Find("Boss").GetComponent<Spawning>().ResumeDaBoy();
         pauseButton.SetActive(true);
         pausePanel.SetActive(false);
+
+        GameObject.Find("Chemical Mix Place").GetComponent<Mixing>().UnPauseMixing();
+        GameObject.Find("TimerBar").GetComponent<timer>().UnPauseTimer();
     }
 
     public void MainMenu()

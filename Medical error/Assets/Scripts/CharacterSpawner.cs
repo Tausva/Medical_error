@@ -54,11 +54,18 @@ public class CharacterSpawner : MonoBehaviour
         AmphetamineAmount = PlayerPrefs.GetInt("Amphetamine", 0);
 
         amount = HashAmount + AmphetamineAmount + CocaineAmount;
-        if (Random.value > 0.5f)
+        int modifier = 0;
+
+        if (amount < 10)
+            modifier = amount;
+
+        if (Random.value > 0.25f)
         {
-            amount += Random.Range(0, amount / 4);
+            amount += Random.Range(0, amount);
         }
-        else amount -=  Random.Range(0, amount / 4);
+        else amount -=  Random.Range(0, amount);
+        amount += modifier;
+
         Characters();
     }
 
@@ -193,6 +200,16 @@ public class CharacterSpawner : MonoBehaviour
     public void NextDay()
     {
         SceneManager.LoadScene("DayScene");
+    }
+
+    public void Waifus()
+    {
+        SceneManager.LoadScene("Waifus");
+    }
+
+    public void Houses()
+    {
+        SceneManager.LoadScene("House");
     }
 
     public void ShowStats()

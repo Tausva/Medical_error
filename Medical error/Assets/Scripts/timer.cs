@@ -43,4 +43,14 @@ public class timer : MonoBehaviour
 
         isActive = true;
     }
+
+    public void PauseTimer()
+    {
+        isActive = false;
+    }
+
+    public void UnPauseTimer()
+    {
+        isActive = true;
+    }
 }

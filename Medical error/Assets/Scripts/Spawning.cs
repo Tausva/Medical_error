@@ -8,7 +8,7 @@ public class Spawning : MonoBehaviour
     public AudioClip DoorOpenSound;
     public AudioClip DoorCloseSound;
     public AudioClip Angry;
-    private AudioSource audio = new AudioSource();
+    private new AudioSource audio = new AudioSource();
 
     public int checkRate;
     public float commingTime = 3f;
@@ -21,6 +21,7 @@ public class Spawning : MonoBehaviour
     private GameObject DoorOpen;
     private GameObject Body;
     private GameObject Head;
+    private GameObject Happy;
     private SpriteRenderer HeadColor;
     private GameObject ShoutingCloud;
 
@@ -35,6 +36,7 @@ public class Spawning : MonoBehaviour
         DoorOpen = GameObject.Find("DoorOpen");
         Body = GameObject.Find("Body");
         Head = GameObject.Find("Head");
+        Happy = GameObject.Find("Happy");
         HeadColor = Head.GetComponent<SpriteRenderer>();
         ShoutingCloud = GameObject.Find("shouting-cloud");
 
@@ -42,8 +44,8 @@ public class Spawning : MonoBehaviour
         ShoutingCloud.SetActive(false);
         DoorOpen.SetActive(false);
         Body.SetActive(false);
+        Happy.SetActive(false);
 
-        //audio = GameObject.Find("MusicManager").GetComponent<AudioSource>();
         audio = GameObject.FindGameObjectWithTag("DayMusic").GetComponent<AudioSource>();
     }
 
@@ -116,6 +118,8 @@ public class Spawning : MonoBehaviour
             GameObject.Find("Shadow").transform.position = new Vector2(6.11f, 2.6f);
             GameObject.Find("Shadow").GetComponent<Animator>().SetTrigger("WalkBack");
             timer = Time.time + commingTime;
+
+            Happy.SetActive(false);
         }
         else if (state == 5 && timer <= Time.time)
         {
@@ -155,6 +159,7 @@ public class Spawning : MonoBehaviour
         if (state == 4)
         {
             countOfMedicine++;
+            Happy.SetActive(true);
         }
     }
 
@@ -162,10 +167,19 @@ public class Spawning : MonoBehaviour
     {
         pausedState = state;
         state = -1;
+        GameObject.Find("AudioManager").GetComponent<AudioSource>().Pause();
+        PauseResumeAnimation(false);
     }
 
     public void ResumeDaBoy()
     {
         state = pausedState;
+        GameObject.Find("AudioManager").GetComponent<AudioSource>().UnPause();
+        PauseResumeAnimation(true);
+    }
+
+    private void PauseResumeAnimation(bool state)
+    {
+        GameObject.Find("Shadow").GetComponent<Animator>().enabled = state;
     }
 }
