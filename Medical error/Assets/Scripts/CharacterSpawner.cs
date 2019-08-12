@@ -199,7 +199,7 @@ public class CharacterSpawner : MonoBehaviour
 
     public void NextDay()
     {
-        SceneManager.LoadScene("DayScene");
+        Loader.Load();
     }
 
     public void Waifus()

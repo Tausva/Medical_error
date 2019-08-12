@@ -29,7 +29,6 @@ public class MenuManager : MonoBehaviour
     public void PlayGame()
     {
         Loader.Load();
-        //SceneManager.LoadScene("DayScene");
     }
 
     public void Waifus()

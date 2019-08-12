@@ -17,11 +17,15 @@ public class ClockTicking : MonoBehaviour
     private GameObject panel;
     private GameObject pausePanel;
     private GameObject pauseButton;
+    private GameObject exitPanel;
 
     private bool isTicking = true;
 
     void Start()
     {
+        exitPanel = GameObject.Find("ConfirmationPanel");
+        exitPanel.SetActive(false);
+
         TimeInSeconds += Time.time;
         hoursArrow = GameObject.Find("HourArrow").transform;
         minuteArrow = GameObject.Find("MinuteArrow").transform;
@@ -35,7 +39,7 @@ public class ClockTicking : MonoBehaviour
         pauseButton = GameObject.Find("PauseButton");
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (isTicking)
         {
@@ -100,6 +104,7 @@ public class ClockTicking : MonoBehaviour
         GameObject.Find("Chemical Mix Place").GetComponent<Mixing>().UnPauseMixing();
         if (GameObject.Find("TimerBar") != null)
             GameObject.Find("TimerBar").GetComponent<timer>().UnPauseTimer();
+        exitPanel.SetActive(false);
     }
 
     public void MainMenu()
@@ -132,5 +137,15 @@ public class ClockTicking : MonoBehaviour
         GameObject.Find("HashAmount").SetActive(false);
         GameObject.Find("CocaineAmount").SetActive(false);
         GameObject.Find("AmphetamineAmount").SetActive(false);
+    }
+
+    public void ExitPanel()
+    {
+        exitPanel.SetActive(true);
+    }
+
+    public void BackToGame ()
+    {
+        exitPanel.SetActive(false);
     }
 }
