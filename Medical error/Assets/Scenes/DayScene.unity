@@ -6576,6 +6576,9 @@ MonoBehaviour:
   - {fileID: 964639683}
   - {fileID: 1706997282}
   - {fileID: 596079802}
+  AnesteticBonus: 2
+  SedativeBonus: 1
+  AntiCancerBonus: 5
 --- !u!1 &1043500650
 GameObject:
   m_ObjectHideFlags: 0

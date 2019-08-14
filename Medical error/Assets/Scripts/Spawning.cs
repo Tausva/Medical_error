@@ -109,8 +109,8 @@ public class Spawning : MonoBehaviour
             }
             else if (countOfMedicine > 0)
             {
-                checkRate += 20;
-                watchTime -= 0.2f;
+                checkRate += 20 * countOfMedicine;
+                watchTime -= 0.2f * countOfMedicine;
             }
             countOfMedicine = 0;
 
@@ -154,11 +154,11 @@ public class Spawning : MonoBehaviour
             state = 6;
     }
 
-    public void AddOneToMedicineCount()
+    public void AddOneToMedicineCount(int count)
     {
         if (state == 4)
         {
-            countOfMedicine++;
+            countOfMedicine += count;
             Happy.SetActive(true);
         }
     }

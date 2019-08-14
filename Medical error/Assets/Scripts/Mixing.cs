@@ -31,6 +31,8 @@ public class Mixing : MonoBehaviour
 
     private bool isPaused = false;
 
+    public int AnesteticBonus, SedativeBonus, AntiCancerBonus;
+
     private void Start()
     {
         progressBar = GameObject.Find("TimerBar");
@@ -95,7 +97,6 @@ public class Mixing : MonoBehaviour
 
                 if (!isLegal)
                     isLegal = true;
-                else GameObject.Find("Boss").GetComponent<Spawning>().AddOneToMedicineCount();
 
                 Cloud.SetActive(true);
                 switch (result)
@@ -111,12 +112,15 @@ public class Mixing : MonoBehaviour
                         break;
                     case "Anesthetic":
                         Drugs[3].SetActive(true);
+                        GameObject.Find("Boss").GetComponent<Spawning>().AddOneToMedicineCount(AnesteticBonus);
                         break;
                     case "Anticancer":
                         Drugs[4].SetActive(true);
+                        GameObject.Find("Boss").GetComponent<Spawning>().AddOneToMedicineCount(AntiCancerBonus);
                         break;
                     case "Sedative":
                         Drugs[5].SetActive(true);
+                        GameObject.Find("Boss").GetComponent<Spawning>().AddOneToMedicineCount(SedativeBonus);
                         break;
                 }
                 GameObject.Find("ProductionCloud").GetComponent<Animator>().SetTrigger("Pop");

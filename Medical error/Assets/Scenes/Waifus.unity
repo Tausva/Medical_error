@@ -943,7 +943,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 4
-  price: 20000
+  price: 5000
   text: {fileID: 716495176}
   kiss: {fileID: 1412672040}
   smallkiss: {fileID: 8300000, guid: 9c476b1e8ce89b8418bfb3688ffda080, type: 3}
@@ -1247,7 +1247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 5
-  price: 25000
+  price: 5000
   text: {fileID: 1287429758}
   kiss: {fileID: 674472669}
   smallkiss: {fileID: 8300000, guid: 9c476b1e8ce89b8418bfb3688ffda080, type: 3}
@@ -1728,7 +1728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 3
-  price: 15000
+  price: 5000
   text: {fileID: 203606320}
   kiss: {fileID: 444455951}
   smallkiss: {fileID: 8300000, guid: 9c476b1e8ce89b8418bfb3688ffda080, type: 3}
@@ -3391,7 +3391,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 2
-  price: 10000
+  price: 5000
   text: {fileID: 922095208}
   kiss: {fileID: 1570641125}
   smallkiss: {fileID: 8300000, guid: 9c476b1e8ce89b8418bfb3688ffda080, type: 3}

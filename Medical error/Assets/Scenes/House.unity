@@ -1864,7 +1864,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 3
-  value: 50000
+  value: 20000
   img: {fileID: 1704953506}
   buyText: {fileID: 984728316}
   buyText2: {fileID: 1314303159}
@@ -2426,7 +2426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   index: 2
-  value: 20000
+  value: 15000
   img: {fileID: 149104111}
   buyText: {fileID: 610813211}
   buyText2: {fileID: 606573744}
