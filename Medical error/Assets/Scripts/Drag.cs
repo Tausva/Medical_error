@@ -10,6 +10,8 @@ public class Drag : MonoBehaviour
     private bool isInPlace = false;
     private GameObject target;
     private bool isDraggable = true;
+    private bool isVenusBonus = false;
+    public bool isVenusEdible = false;
 
     private void Start()
     {
@@ -45,6 +47,10 @@ public class Drag : MonoBehaviour
             {
                 target.GetComponent<Mixing>().AddComponent(gameObject.name);
                 isInPlace = false;
+            } else if (isVenusBonus && isVenusEdible)
+            {
+                target.GetComponent<FlytrapManager>().Eat();
+                isVenusBonus = false;
             }
             transform.position = startPosition;
         }
@@ -56,6 +62,10 @@ public class Drag : MonoBehaviour
         {
             isInPlace = true;
             target = col.gameObject;
+        } else if (col.gameObject.tag == "Venus")
+        {
+            target = col.gameObject;
+            isVenusBonus = true;
         }
     }
 
@@ -63,6 +73,8 @@ public class Drag : MonoBehaviour
     {
         if (col.gameObject.tag == "MixingTable")
             isInPlace = false;
+        else if (col.gameObject.tag == "Venus")
+            isVenusBonus = false;
     }
 
     public void EnableDragging()

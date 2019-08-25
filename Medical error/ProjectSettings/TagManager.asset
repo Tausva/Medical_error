@@ -8,6 +8,7 @@ TagManager:
   - Music
   - DayMusic
   - Pyp
+  - Venus
   layers:
   - Default
   - TransparentFX
